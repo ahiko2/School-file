@@ -1,0 +1,437 @@
+WindowManager:
+    InventoryWindow:
+    OnOrderWindow:
+    OrderFormWindow:
+    AddPartWindow:
+    # Add student class to kivy and get to prepare task_3
+    StudentInfo:
+
+<ItemLabel@Label>
+    font_size: '15sp'
+    halign: 'left'
+    valign: 'middle'
+    text_size: self.size
+
+<ItemButton@Button>
+    pos_hint: {'center_x':0.5, 'center_y':0.5}
+    size_hint: 0.65, 0.2
+
+
+<ItemButton2@Button>
+    pos_hint: {'center_x':0.5, 'center_y':0.5}
+    size_hint: 0.65, 0.2
+    on_release:
+        app.root.current = "order_form_window"
+
+
+<InventoryWindow>:
+    name: "inv_window"
+        add_probe: add_probe
+
+    FloatLayout:
+        Label:
+            text: 'Inventory'
+            font_size: '25sp'
+            size_hint: (1, 0.17)
+            pos_hint: {'x': 0, 'y': 0.87}
+
+    GridLayout:
+        cols: 4
+
+        padding:[10, 65, 10, 10]
+        spacing: 5
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemLabel:
+                text:'iQue3: Probe/Tubing'
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            ItemButton:
+                text:'Add'
+                on_release:
+                    root.new_part()
+
+        BoxLayout:
+            orientation: 'vertical'
+
+            ItemButton:
+                text:'Sub'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton2:
+                text:'Order'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemLabel:
+                text:'Gen2: Probe/Tubing'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton:
+                text:'Add'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton:
+                text:'Sub'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton2:
+                text:'Order'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemLabel:
+                text:'Beads'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton:
+                text:'Add'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton:
+                text:'Sub'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton2:
+                text:'Order'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemLabel:
+                text:'iQue3 Fluid Maint. Kit'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton:
+                text:'Add'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton:
+                text:'Sub'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton2:
+                text:'Order'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemLabel:
+                text:'Screener Fluid Maint. Kit'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton:
+                text:'Add'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton:
+                text:'Sub'
+
+        BoxLayout:
+            orientation: 'vertical'
+            ItemButton2:
+                text:'Order'
+
+        BoxLayout:
+            orientation: 'vertical'
+
+
+    GridLayout:
+        cols: 2
+        size_hint: 1, 0.15
+        padding: [10, 0, 10, 10]
+
+
+        BoxLayout:
+
+            Button:
+                text: 'Add Part to Inventory'
+                font_size: '18sp'
+                size_hint: (1, 0.75)
+                on_release:
+                    app.root.current = "add_part_window"
+                    root.manager.transition.direction = "right"
+
+            Button:
+                text: 'On Order'
+                font_size: '18sp'
+                size_hint: (1, 0.75)
+                on_release:
+                    app.root.current = "on_order_window"
+                    root.manager.transition.direction = "left"
+            #Add Student Info button task_4
+            Button:
+                text: "Student Info"
+                font_size: '18sp'
+                size_hint: (1, 0.75)
+                on_release:
+                    app.root.current="studentinfo_window"
+                    #this is window change animation, so dont need
+                    root.manager.transition.direction="left"
+
+
+
+
+<OnOrderWindow>:
+
+    name: "on_order_window"
+
+    FloatLayout:
+        Label:
+            text: 'On Order'
+            font_size: '25sp'
+            size_hint: (1, 0.17)
+            pos_hint: {'x': 0, 'y': 0.87}
+
+        GridLayout:
+            cols: 2
+            size_int: 1, .15
+            padding:[10, 510, 10, 10]
+
+            Button:
+                text: "Inventory"
+                font_size: '18sp'
+                size_hint: (1, 0.6)
+                on_release:
+                    app.root.current = "inv_window"
+                    root.manager.transition.direction = "right"
+            Button:
+                text:"Add Part to Inventory"
+                size_hint: (1, 0.6)
+                font_size: '18sp'
+                on_release:
+                    app.root.current = "add_part_window"
+                    root.manager.transition.direction = "left"
+
+
+<OrderFormWindow>
+    name: "order_form_window"
+
+    FloatLayout:
+        Label:
+            text: 'Order Form'
+            font_size: '25sp'
+            size_hint: (1, 0.17)
+            pos_hint: {'x': 0, 'y': 0.87}
+
+        GridLayout:
+            cols:2
+            padding: [50, 50, 50, 120]
+
+            ItemLabel:
+                text: "Part: "
+
+            ItemLabel:
+                text: "Populate Part Here"
+
+            ItemLabel:
+                text: "Serial Number: "
+
+            ItemLabel:
+                text: "Populate SN Here"
+
+            ItemLabel:
+                text: "On Hand: "
+
+            ItemLabel:
+                text: "Populate On Hand Count Here"
+
+            ItemLabel:
+                text: "Minimum Needed: "
+
+            ItemLabel:
+                text: "Populate Min Needed Here"
+
+            ItemLabel:
+                text: "Order Quantity"
+
+            TextInput:
+                halign: 'left'
+                valign: 'middle'
+                input_type: 'number'
+                input_filter: 'int'
+                multiline:False
+
+        GridLayout:
+            cols:2
+            size_hint: 1, 0.15
+            padding: [10, 0, 10, 10]
+
+            Button:
+                text:"Cancel"
+                on_release: app.root.current = "inv_window"
+
+            Button:
+                text:"Submit Order"
+                on_release: app.root.current = "on_order_window"
+
+
+#This is the add part screen layout I'm referring to
+<AddPartWindow>
+    name: "add_part_window"
+
+        #These are the id's I was referring to:
+        
+        part_name: part_name
+        serial_number: serial_number
+        on_hand_cnt: on_hand_cnt
+        min_needed: min_needed
+
+    FloatLayout:
+        Label:
+            text: 'Add Part to Inventory'
+            font_size: '25sp'
+            size_hint: (1, 0.17)
+            pos_hint: {'x': 0, 'y': 0.86}
+
+        GridLayout:
+            cols:2
+            padding: [50, 100, 50, 120]
+            spacing: 5
+
+            ItemLabel:
+                text: "Name of Part: "
+
+            TextInput:
+                id: part_name
+                halign: 'left'
+                valign: 'middle'
+                multinline:False
+
+            ItemLabel:
+                text: "Serial Number: "
+
+            TextInput:
+                id: serial_number
+                halign: 'left'
+                valign: 'middle'
+                multiline:False
+
+            ItemLabel:
+                text: "How Many On Hand?: "
+
+            TextInput:
+                id: on_hand_cnt
+                halign: 'left'
+                valign: 'middle'
+                multinline:False
+
+            ItemLabel:
+                text: "Minimum Needed?: "
+
+            TextInput:
+                id: min_needed
+                halign: 'left'
+                valign: 'middle'
+                multiline:False
+
+        GridLayout:
+            cols:2
+            size_hint: 1, 0.15
+            padding: [10, 0, 10, 10]
+
+            Button:
+                text:"Cancel"
+                on_release:
+                    app.root.current = "inv_window"
+                    root.manager.transition.direction = "left"
+
+            #Here is the button I'm referring to, I realize that putting "root." in front of new_part() is not 
+            #the correct thing to put, so it's a placeholder for now:
+            
+            Button:
+                text:"Submit"
+                on_release:
+                    root.new_part()
+                    app.root.current = "inv_window"
+                    root.manager.transition.direction = "left"
+
+
+
+#Create StudentInfo Layout and window task_5
+
+<StudentInfo>
+    name: "studentinfo_window"
+
+        STUDENT_ID: STUDENT_ID
+        STUDENT_NAME: STUDENT_NAME
+        STDUENT_DOB: STDUENT_DOB
+    
+    FloatLayout:
+        Label:
+            #title
+            text: 'Student Information'
+            font_size: '25sp'
+            size_hint: (1, 0.17)
+            pos_hint: {'x': 0, 'y': 0.86}
+
+        GridLayout:
+            cols:2
+            padding: [50, 100, 50, 120]
+            spacing: 5
+
+            ItemLabel:
+                text: "Student ID"
+
+            TextInput:
+                id: STUDENT_ID
+                halign: 'left'
+                valign: 'middle'
+                multinline:False
+
+            ItemLabel:
+                text: "Student Name"
+
+            TextInput:
+                id: STUDENT_NAME
+                halign: 'left'
+                valign: 'middle'
+                multiline:False
+
+            ItemLabel:
+                text: "Student DOB"
+
+            TextInput:
+                id: STDUENT_DOB
+                halign: 'left'
+                valign: 'middle'
+                multinline:False
+
+            
+
+        GridLayout:
+            cols:2
+            size_hint: 1, 0.15
+            padding: [10, 0, 10, 10]
+
+            Button:
+                text:"Cancel"
+                on_release:
+                    app.root.current = "inv_window"
+                    root.manager.transition.direction = "left"
+
+            #Here is the button I'm referring to, I realize that putting "root." in front of new_part() is not 
+            #the correct thing to put, so it's a placeholder for now:
+            
+            Button:
+                text:"Submit"
+                on_release:
+                    root.new_part()
+                    app.root.current = "inv_window"
+                    root.manager.transition.direction = "left"
+    
+
+
